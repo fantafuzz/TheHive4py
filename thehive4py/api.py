@@ -586,6 +586,13 @@ class TheHiveApi:
         """
 
         return self.__find_rows("/api/case/task/_search", **attributes)
+    
+    def get_artifact_datatypes(self):
+    req = self.url + "/api/list/list_artifactDataType"
+    try:
+        return requests.get(req, proxies=self.proxies, auth=self.auth, verify=self.cert)
+    except requests.exceptions.RequestException as e:
+        raise TheHiveException("Error on retrieving health status: {}".format(e))
 
 # - addObservable(file)
 # - addObservable(data)
